@@ -1,3 +1,5 @@
+import * as moment from 'moment-timezone';
+
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import * as smtpTransport from 'nodemailer-smtp-transport';
@@ -22,11 +24,15 @@ export class SendMailService {
     }
 
     async sendEmail(name: string, email: string, suggestion: string): Promise<void> {
-        const now = new Date();
-        const formattedDate = `
-            ${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear() % 100}`;
-        const formattedTime = `
-            ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        // Para detectar o fuso horário do cliente, você pode usar algo assim:
+        const clientTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        // Para criar um momento com o fuso horário do cliente:
+        const now = moment().tz(clientTimeZone);
+
+        // Agora você pode formatar a data e hora com base no fuso horário:
+        const formattedDate = now.format('DD/MM/YY');
+        const formattedTime = now.format('HH:mm');
 
         const emailBody = `
             <h2>Sugestão do Portifólio</h2>

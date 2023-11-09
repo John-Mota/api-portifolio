@@ -28,6 +28,8 @@
     "@nestjs/platform-express": "^10.2.8",
     "debug": "^4.3.1",
     "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "nodemailer": "^6.9.7",
     "nodemailer-smtp-transport": "^2.7.4",
     "reflect-metadata": "^0.1.13",

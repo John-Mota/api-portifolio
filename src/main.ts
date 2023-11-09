@@ -13,6 +13,6 @@ async function bootstrap() {
   );
 
   app.use(cors())
-  await app.listen(3000);
+  await app.listen(9001);
 }
 bootstrap();
